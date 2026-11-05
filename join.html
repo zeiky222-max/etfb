@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joining – Escape Tsunami</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#fff;text-shadow:0 1px 5px rgba(0,0,0,.85);background:#1b1240}
+video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.shade{position:fixed;inset:0;z-index:0;background:rgba(20,12,50,.35)}
+.card{position:relative;z-index:1;width:min(92vw,420px);padding:24px 20px;text-align:center;border-radius:20px;border:1px solid rgba(255,255,255,.38);background:rgba(255,255,255,.1);backdrop-filter:blur(3px)}
+.card img{width:100%;border-radius:14px;border:3px solid #ff9a2e;margin-bottom:14px}
+h1{margin:0 0 6px;font-size:1.6rem;text-transform:uppercase;color:#ff9a2e}
+p{margin:0 0 16px;color:#e4defe}
+.bar{height:10px;border-radius:9px;background:rgba(255,255,255,.25);overflow:hidden;margin-bottom:18px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3ddc6a,#ffd23f,#ff9a2e);transition:width 3s linear}
+.btn{display:inline-block;text-decoration:none;font-weight:800;border-radius:12px;padding:13px 28px;color:#2b1700;text-shadow:none;background:linear-gradient(180deg,#ffd23f,#ff9a2e);box-shadow:0 4px 0 #b25f00;text-transform:uppercase}
+a.back{display:block;margin-top:14px;color:#cfc6ff;font-size:.9rem}
+</style>
+</head>
+<body>
+<video autoplay muted loop playsinline src="bg.mp4"></video><div class="shade"></div>
+<div class="card">
+  <img src="theme.jpg" alt="Escape Tsunami">
+  <h1 id="h">Joining server…</h1>
+  <p id="p">Get ready to run!</p>
+  <div class="bar"><i id="b"></i></div>
+  <a class="btn" id="go" href="#">Launch game</a>
+  <a class="back" href="index.html">← Back</a>
+</div>
+<script src="config.js"></script>
+<script>
+var u="";try{u=atob(PRIVATE_LINK_B64)}catch(e){}
+var ok=/^https:\/\//.test(u),go=document.getElementById("go");
+if(!ok){document.getElementById("h").textContent="Link not set yet";document.getElementById("p").textContent="The server owner has not added the private server link.";go.style.display="none"}
+else{
+  go.href=u;
+  requestAnimationFrame(function(){requestAnimationFrame(function(){document.getElementById("b").style.width="100%"})});
+  document.getElementById("p").textContent="Opening your private server in 3 seconds…";
+  setTimeout(function(){location.href=u},3000);
+}
+</script>
+</body>
+</html>
